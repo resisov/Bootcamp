@@ -86,6 +86,9 @@ plt.show()
 # hint : pt, eta, phi, energy
 
 
+# Q5. 전자- 전자 채널이 아닌 뮤온- 뮤온 채널에서 dilepton의 mass를 구해보세요.
+# hint : PID
+
 
 
 ## APPENDIX ##
