@@ -64,8 +64,8 @@ for i in range(len(px)):
 		dilepton_mass.append((vec_nege[i,0] + vec_pose[i,0]).mass)
 
 ## Let's Draw histograms!
-plt.hist(dilepton_mass,bins=30,range=(0,300),color='blue')
-plt.xlim(0,300)
+plt.hist(dilepton_mass,bins=150,range=(0,150),color='blue')
+plt.xlim(0,150)
 plt.show()
 
 
