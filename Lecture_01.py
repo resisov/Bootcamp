@@ -38,8 +38,8 @@ elec_pt = pt[e_mask].flatten()
 muon_pt = pt[u_mask].flatten()
 
 ## Let's Draw histograms!
-plt.hist(elec_pt,range(0,300),color='blue')
-plt.hist(muon_pt,range(0,300),color='red')
+plt.hist(elec_pt,bins=30,range=(0,300),color='blue')
+plt.hist(muon_pt,bins=30,range=(0,300),color='red')
 plt.xlim(0,300)
 plt.show()
 
