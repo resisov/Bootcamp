@@ -2,6 +2,8 @@
 
 HEPKNU 정예신병양성교육대에 오신것을 환영합니다.
 
+Google colab 이나 Jupyter Notebook 환경을 위한 ipynb 확장자도 지원합니다.
+
 - Project 01: Z 보존 질량 재구성
 
   - 01-1: 전자와 뮤온 물리량 뽑아보기 : [Lecture_01.py](https://github.com/resisov/Bootcamp/blob/main/Lecture_01.py)
