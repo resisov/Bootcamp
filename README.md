@@ -19,3 +19,8 @@ Project 02의 진행을 위해 W > l vl process의 검출기 시뮬레이션을 
   - 02-1: 렙톤과 중성미자 식별 : (준비중)
   - 02-2: 중성미자는 식별될 수 없다 : (준비중)
   - 02-3: W 보존의 횡단질량 계산 : [Lecture_04.ipynb](https://github.com/resisov/Bootcamp/blob/main/Lecture_04.ipynb)
+
+- Project 03: 실험데이터 시각화
+
+  - 03-1: 시각화 예제 : [Visualization_v1.ipynb](https://github.com/resisov/Bootcamp/blob/main/Visualization_v1.ipynb)
+  - 03-2: 확률밀도 시각화 : [prob_dense.ipynb](https://github.com/resisov/Bootcamp/blob/main/prob_dense.ipynb)
