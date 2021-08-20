@@ -24,3 +24,4 @@ Project 02의 진행을 위해 W > l vl process의 검출기 시뮬레이션을 
 
   - 03-1: 시각화 예제 : [Visualization_v1.ipynb](https://github.com/resisov/Bootcamp/blob/main/Visualization_v1.ipynb)
   - 03-2: 확률밀도 시각화 : [prob_dense.ipynb](https://github.com/resisov/Bootcamp/blob/main/prob_dense.ipynb)
+  - 03-2: 서브플롯 : [subplot.ipynb](https://github.com/resisov/Bootcamp/blob/main/subplot.ipynb)
