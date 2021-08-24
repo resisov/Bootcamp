@@ -29,5 +29,5 @@ Project 02의 진행을 위해 W > l vl process의 검출기 시뮬레이션을 
 
 - Project 04: 데이터 경량화
 
-  - 03-1: Ntuple 만들기 : [Visualization_v1.ipynb](https://github.com/resisov/Bootcamp/blob/main/Visualization_v1.ipynb)
+  - 03-1: Ntuple 만들기 : [Make_NTuple.py](https://github.com/resisov/Bootcamp/blob/main/Make_NTuple.py)
 
