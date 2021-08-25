@@ -29,7 +29,7 @@ Project 03은 분석된 데이터를 시각화하는 과정을 다루고 있습�
   - 03-3: 서브플롯 : [subplot.ipynb](https://github.com/resisov/Bootcamp/blob/main/subplot.ipynb)
   - 03-3: 서브플롯 : [subplot_v2.ipynb](https://github.com/resisov/Bootcamp/blob/main/subplot_v2.ipynb)
 
-Project 04는 여러분들이 실험 데이터를 자발적으로 컨츄롤하고 최적화, 유의수준계산 등을 다룹니다.
+Project 04는 여러분들이 실험 데이터를 자발적으로 컨츄롤하고 최적화, 유의수준계산 등을 실시하는 것을 다룹니다.
 
 주의 사항: Ntuple 형식이나 분석 과정 설계에는 답안이 없습니다. 트리형 구조 (eg. ak.zip etc.) 혹은 선형 구조 (eg. list, np.array etc.) 
 
