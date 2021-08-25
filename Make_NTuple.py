@@ -155,10 +155,10 @@ pathlist = [
 "/x4/cms/jyshin/TTBar_DM/ROOTF/ZZ_NLO/*.root",
 "/x4/cms/jyshin/TTBar_DM/ROOTF/st_tch_NLO/*.root",
 "/x4/cms/jyshin/TTBar_DM/ROOTF/st_sch_NLO/*.root",
-"../../jyshin/TTBar_DM/signal/ttx_dm_scalar_mdm_1E+00_mmed_1/condorOut/condorDelPyOut/*.root"]
+"/CONFIDENTIAL/*.root"]
 
 
-labellist = ["TT_had","TT_semi","TTW","TTZ","WQ","WL","ZQ","ZL","DY","WW","WZ","ZZ","ST_t","ST_s","Signal"]
+labellist = ["TT_had","TT_semi","TTW","TTZ","WQ","WL","ZQ","ZL","DY","WW","WZ","ZZ","ST_t","ST_s","???"]
 
 #### SAVE DIRECTORY ####
 folder = "Full_select_v8"
