@@ -16,8 +16,8 @@ Project 02의 진행을 위해 W > l vl process의 검출기 시뮬레이션을 
 
 - Project 02: W 보존 횡단질량 계산
 
-  - 02-1: 렙톤과 중성미자 식별 : (준비중)
-  - 02-2: 중성미자는 식별될 수 없다 : (준비중)
+  - 02-1: 렙톤과 중성미자 식별 : 
+  - 02-2: 중성미자는 식별될 수 없다 : 
   - 02-3: W 보존의 횡단질량 계산 : [Lecture_04.ipynb](https://github.com/resisov/Bootcamp/blob/main/Lecture_04.ipynb)
 
 - Project 03: 실험데이터 시각화
@@ -27,7 +27,8 @@ Project 02의 진행을 위해 W > l vl process의 검출기 시뮬레이션을 
   - 03-3: 서브플롯 : [subplot.ipynb](https://github.com/resisov/Bootcamp/blob/main/subplot.ipynb)
   - 03-3: 서브플롯 : [subplot_v2.ipynb](https://github.com/resisov/Bootcamp/blob/main/subplot_v2.ipynb)
 
-- Project 04: 데이터 경량화
+- Project 04: 고등 데이터 분석 기법
 
-  - 03-1: Ntuple 만들기 : [Make_NTuple.py](https://github.com/resisov/Bootcamp/blob/main/Make_NTuple.py)
+  - 04-1: Ntuple 만들기 : [Make_NTuple.py](https://github.com/resisov/Bootcamp/blob/main/Make_NTuple.py)
+  - 04-1: TPR / FPR 계산 및 판별변수 최적화 : [Cal_TPR.ipynb](https://github.com/resisov/Bootcamp/blob/main/Cal_TPR.py)
 
