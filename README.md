@@ -36,5 +36,6 @@ Project 04는 여러분들이 실험 데이터를 자발적으로 컨츄롤하�
 - Project 04: 고등 데이터 분석 기법
 
   - 04-1: Ntuple 만들기 : [Make_NTuple.py](https://github.com/resisov/Bootcamp/blob/main/Make_NTuple.py)
-  - 04-1: TPR / FPR 계산 및 판별변수 최적화 : [Cal_TPR.ipynb](https://github.com/resisov/Bootcamp/blob/main/Cal_TPR.ipynb)
+  - 04-2: 데이터는요??? : [make_nTuple.py](https://github.com/resisov/Bootcamp/blob/main/make_nTuple.py)
+  - 04-3: TPR / FPR 계산 및 판별변수 최적화 : [Cal_TPR.ipynb](https://github.com/resisov/Bootcamp/blob/main/Cal_TPR.ipynb)
 
