@@ -3,7 +3,6 @@
 ## If you want to contact the code designer, please visit ROOM 208 and call Tau Kim ##
 
 import uproot as ROOT
-import awkward1 as ak
 import vector
 import numpy as np
 import glob
@@ -40,7 +39,7 @@ def tupleMaker(filepath, filetype, DATA=False):
 	for arrays, doc in ROOT.iterate(openlist,branches,report=True):
 		print("from: {0}, to: {1} -- Entries: {2}".format(doc.start,doc.stop,len(arrays)))
 		
-		MET_pt = arrays[b"MET_pt"]
+		MET = arrays[b"MET_pt"]
 		nElectron = arrays[b"nElectron"]
 		nMuon = arrays[b"nMuon"]
 		nJet = arrays[b"nJet"]
@@ -71,9 +70,9 @@ def tupleMaker(filepath, filetype, DATA=False):
 			histo['nJet'] = nJet
 		else:
 			histo['MET'] = np.concatenate((histo['MET'],MET))
-			histo['nElectron'] = np.concatenate((histo['nElectron'],MET))
-			histo['nMuon'] = np.concatenate((histo['nMuon'],MET))
-			histo['nJet'] = np.concatenate((histo['nJet'],MET))
+			histo['nElectron'] = np.concatenate((histo['nElectron'],nElectron))
+			histo['nMuon'] = np.concatenate((histo['nMuon'],nMuon))
+			histo['nJet'] = np.concatenate((histo['nJet'],nJet))
 
 	## Save nTuple
 	np.save(""+ folder +"/"+ filetype +"_nTuple",histo)
@@ -109,10 +108,12 @@ pathlist = [
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTZToNuNu_TuneCP5_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/WW_TuneCP5_13TeV-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/WZ_TuneCP5_13TeV-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
-"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTToSemileptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/FSUL18_FSUL18_106X_upgrade2018_realistic_v16_L1v1_ext1-v3/*/*.root"
+"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTToSemileptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/FSUL18_FSUL18_106X_upgrade2018_realistic_v16_L1v1_ext1-v3/*/*.root",
+"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root",
+"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root"
 ]
 
-labellist = ['TTTo2L2Nu_UL18','TTWJetsToLNu_UL18','TTZToNuNu_UL18','WW_UL18','WZ_UL18','TTToSemileptonic_UL18']
+labellist = ['TTTo2L2Nu_UL18','TTWJetsToLNu_UL18','TTZToNuNu_UL18','WW_UL18','WZ_UL18','TTToSemileptonic_UL18','ST_TW_top_UL18','ST_TW_anti_UL18']
 
 ### MCLOOP
 
