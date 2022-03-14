@@ -9,6 +9,7 @@ import glob
 import awkward as ak
 from coffea import nanoevents
 from coffea import lumi_tools
+import myModule
 
 ######################## FUNCTION DEFINITION ############################
 
@@ -33,6 +34,13 @@ def myTrigger(arrays, channel):
 		Trigger = arrays[b"HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL"] | arrays[b"HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL"]
 
 	return Trigger
+
+def myPileup(answer,mcpu):
+	yval = answer.values()
+	mcy, mcx = np.histogram(mcpu,bins=myModule.setEdge(0,99,1))
+	SF = yval / mcy
+	SF = np.nan_to_num(SF,posinf=1,neginf=1)
+	return SF
 
 
 def tupleMaker(filepath, filetype, DATA=False, year=None, channel=None):
@@ -95,6 +103,7 @@ def tupleMaker(filepath, filetype, DATA=False, year=None, channel=None):
 				#print("Good run events ratio = {0} %".format(len(MET)/len(arrays)*100))
 
 
+
 		### Trigger
 		mask = (Trigger == 1)
 		MET = MET[mask]
@@ -102,6 +111,7 @@ def tupleMaker(filepath, filetype, DATA=False, year=None, channel=None):
 		nMuon = nMuon[mask]
 		nJet = nJet[mask]
 		nPV = nPV[mask]
+
 
 		### GLOBAL NUMBER OF PARTICLE SELECTION
 		mask = (nElectron + nMuon >= 1) & (nJet >= 2)
@@ -126,6 +136,13 @@ def tupleMaker(filepath, filetype, DATA=False, year=None, channel=None):
 			histo['nJet'] = np.concatenate((histo['nJet'],nJet))
 			histo['nPV'] = np.concatenate((histo['nPV'],nPV))
 
+	### PU Reweighting
+	if DATA == False:
+		if year == 2018:
+			pu = ROOT.open("PileupHistogram-goldenJSON-13tev-2018-69200ub-99bins.root")['pileup']
+			SF_pu = myPileup(pu,nPV)
+			print(SF_pu)
+
 	## Save nTuple
 	#np.save(""+ folder +"/"+ filetype + "_" + channel + "_nTuple",histo)
 	## EOF
@@ -137,42 +154,52 @@ def tupleMaker(filepath, filetype, DATA=False, year=None, channel=None):
 ######################## MAIN CODE START ################################
 folder = "Trigger"
 
-
-### DATA
+'''
+### DoubleMuon DATA
 pathlist = [
-"/x6/cms/store/data/Run2018A/MET/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v2/*/*.root",
-"/x6/cms/store/data/Run2018B/MET/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v2/*/*.root",
-"/x6/cms/store/data/Run2018C/MET/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/*/*.root",
-"/x6/cms/store/data/Run2018D/MET/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/*/*.root"
+"/x6/cms/store/data/Run2018A/DoubleMuon/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/*/*.root",
+"/x6/cms/store/data/Run2018B/DoubleMuon/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/*/*.root",
+"/x6/cms/store/data/Run2018C/DoubleMuon/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/*/*.root",
+"/x6/cms/store/data/Run2018D/DoubleMuon/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v2/*/*.root"
 ]
 
 labellist = ['Run2018A','Run2018B','Run2018C','Run2018D']
 
 ### DATALOOP
 for i in range(len(pathlist)):
-	tupleMaker(pathlist[i],labellist[i],DATA=True,year=2018,channel='ee')
+	#tupleMaker(pathlist[i],labellist[i],DATA=True,year=2018,channel='ee')
 	tupleMaker(pathlist[i],labellist[i],DATA=True,year=2018,channel='mm')
-	tupleMaker(pathlist[i],labellist[i],DATA=True,year=2018,channel='em')
-
+	#tupleMaker(pathlist[i],labellist[i],DATA=True,year=2018,channel='em')
 '''
+
+
 ### MC
 pathlist = [
-"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/FSUL18_FSUL18_106X_upgrade2018_realistic_v16_L1v1_ext1-v3/*/*.root",
+"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTZToNuNu_TuneCP5_13TeV-amcatnlo-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/WW_TuneCP5_13TeV-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/WZ_TuneCP5_13TeV-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
-"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTToSemileptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/FSUL18_FSUL18_106X_upgrade2018_realistic_v16_L1v1_ext1-v3/*/*.root",
+"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root"
 ]
 
 labellist = ['TTTo2L2Nu_UL18','TTWJetsToLNu_UL18','TTZToNuNu_UL18','WW_UL18','WZ_UL18','TTToSemileptonic_UL18','ST_TW_top_UL18','ST_TW_anti_UL18']
 
+
+
+pathlist = [
+"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root",
+"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root"
+]
+labellist = ['ST_TW_top_UL18','ST_TW_anti_UL18']
+
+
 ### MCLOOP
 
 for i in range(len(pathlist)):
-	tupleMaker(pathlist[i],labellist[i],DATA=False)
+	tupleMaker(pathlist[i],labellist[i],DATA=False,year=2018,channel='mm')
 
-'''
+
 ######################## END OF CODE ###########################
