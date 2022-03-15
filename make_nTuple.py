@@ -38,10 +38,21 @@ def myTrigger(arrays, channel):
 def myPileup(answer,mcpu):
 	yval = answer.values()
 	mcy, mcx = np.histogram(mcpu,bins=myModule.setEdge(0,99,1))
-	SF = yval / mcy
+	norm = mcy * sum(yval) / sum(mcy)
+	SF = yval / norm
 	SF = np.nan_to_num(SF,posinf=1,neginf=1)
 	return SF
 
+def scaleToevent(SF,nPV):
+	output = []
+	for idx in range(len(nPV)):
+		if nPV[idx] >= 100:
+			output.append(1.0)
+		else:
+			output.append(SF[nPV[idx]])
+	output = np.array(output)
+	return output
+		
 
 def tupleMaker(filepath, filetype, DATA=False, year=None, channel=None):
 	## Get file list
@@ -140,11 +151,12 @@ def tupleMaker(filepath, filetype, DATA=False, year=None, channel=None):
 	if DATA == False:
 		if year == 2018:
 			pu = ROOT.open("PileupHistogram-goldenJSON-13tev-2018-69200ub-99bins.root")['pileup']
-			SF_pu = myPileup(pu,nPV)
-			print(SF_pu)
+			SF_pu = myPileup(pu,histo['nPV'])
+			SF_pu = scaleToevent(SF_pu,histo['nPV'])
+			histo['SF_pu'] = SF_pu
 
 	## Save nTuple
-	#np.save(""+ folder +"/"+ filetype + "_" + channel + "_nTuple",histo)
+	np.save(""+ folder +"/"+ filetype + "_" + channel + "_nTuple",histo)
 	## EOF
 
 ######################## FUNCTION DEFINITION ############################
@@ -188,13 +200,12 @@ pathlist = [
 labellist = ['TTTo2L2Nu_UL18','TTWJetsToLNu_UL18','TTZToNuNu_UL18','WW_UL18','WZ_UL18','TTToSemileptonic_UL18','ST_TW_top_UL18','ST_TW_anti_UL18']
 
 
-
+'''
 pathlist = [
-"/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root",
 "/x6/cms/store/mc/RunIISummer20UL18NanoAODv9/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/*/*.root"
 ]
-labellist = ['ST_TW_top_UL18','ST_TW_anti_UL18']
-
+labellist = ['ST_TW_anti_UL18']
+'''
 
 ### MCLOOP
 
