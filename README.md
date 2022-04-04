@@ -28,6 +28,7 @@ Project 03은 분석된 데이터를 시각화하는 과정을 다루고 있습�
   - 03-2: 확률밀도 시각화 : [prob_dense.ipynb](https://github.com/resisov/Bootcamp/blob/main/prob_dense.ipynb)
   - 03-3: 서브플롯 : [subplot.ipynb](https://github.com/resisov/Bootcamp/blob/main/subplot.ipynb)
   - 03-3: 서브플롯 : [subplot_v2.ipynb](https://github.com/resisov/Bootcamp/blob/main/subplot_v2.ipynb)
+  - 03-4: 리미트플롯 (1d) : [plot_upperlim.py](https://github.com/resisov/Bootcamp/blob/main/plot_upperlim.py)
 
 Project 04는 여러분들이 실험 데이터를 자발적으로 컨츄롤하고 최적화, 유의수준계산 등을 실시하는 것을 다룹니다.
 
